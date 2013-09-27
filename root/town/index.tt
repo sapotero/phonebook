@@ -1,0 +1,31 @@
+[% INCLUDE wrap/header.tt %] 
+<div class="container">
+  <!-- countries -->
+  <div class="span12">
+    <a href="[% c.uri_for('/') %]">вернуться</a>
+    
+    <h2>Города</h2>
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Город</th>
+          <th>Код города</th>
+        </tr>
+      </thead>
+      <tbody>
+        [% WHILE (town = towns.next) %]
+        <tr>
+          <td>
+            <a href="[% c.uri_for(town.id,'edit') %]"><i class="icon-pencil icon"></i></a>
+            <a href="[% c.uri_for(town.id,'delete') %]"><i class="icon-remove icon"></i></a>
+            [% town.town %]
+          </td>
+          <td>[% town.code %]</td>
+        </tr>
+        [% END %]
+      </tbody>
+    </table>
+    <a href="[% c.uri_for('add') %]"><i class="icon-pencil icon"></i> Добавить</a>  
+  </div>
+</div>
+[% INCLUDE wrap/footer.tt %]  

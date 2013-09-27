@@ -1,0 +1,43 @@
+script/hello_create.pl view HTML TT
+
+-- MySQl --
+
+CREATE DATABASE `phonebook` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
+CREATE TABLE `phonebook`.`country` (`id` INT NULL, `country` VARCHAR(40) NOT NULL, `code` VARCHAR(5) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB
+CREATE TABLE `phonebook`.`town` (`id` INT NULL, `town` VARCHAR(50) NOT NULL, `code` VARCHAR(5) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB
+CREATE TABLE `phonebook`.`abonent` (`id` INT NULL, `name` VARCHAR(100) NOT NULL, `phone` VARCHAR(20) NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB
+CREATE TABLE `phonebook`.`main` (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, `cid` INT NOT NULL, `tid` INT NOT NULL, `aid` INT NOT NULL) ENGINE = InnoDB
+
+-- Simple data --
+
+INSERT INTO `phonebook`.`country` (`id`, `country`, `code`) VALUES  
+  (NULL, 'Венгрия','36'),
+  (NULL, 'Болгария','359'),
+  (NULL, 'Финляндия', '358');
+
+INSERT INTO `phonebook`.`town` (`id`, `cid`, `town`, `code`) VALUES (NULL, '1', 'Будапешт', '1'),
+  (NULL, '2', 'София', '2'),
+  (NULL, '2', 'Пловдив', '32'),
+  (NULL, '3', 'Хельсинки', '9');
+
+INSERT INTO `phonebook`.`abonent` (`id`, `tid`, `name`, `phone`) VALUES 
+  (NULL, '1', 'Хелен Келлер', '12345678'),
+  (NULL, '2', 'Джон Кеннеди', '23456789'),
+  (NULL, '3', 'Брюс Ли', '34578912'),
+  (NULL, '4', 'Чарльз Линдберг', '456789123'),
+  (NULL, '2', 'Харви Милк', '567891234'),
+  (NULL, '3', 'Мэрилин Монро', '678912345'),
+  (NULL, '4', 'Мать Тереза', '789123456'),
+  (NULL, '3', 'Эммелин Панкхёрст', '891234567'),
+  (NULL, '2', 'Роза Паркс', '9123456789'),
+  (NULL, '1', 'Пеле', '159732486'),
+  (NULL, '3', 'Андрей Сахаров', '268459713'),
+  (NULL, '1', 'Джекки Робинсон', '369852147')
+
+
+./phonebook_create.pl controller Country
+./phonebook_create.pl controller City
+./phonebook_create.pl controller Abonent
+
+./phonebook_create.pl model DB DBIC::Schema phonebook::SchemaClass create=static dbi:mysql:phonebook root VPbvcv8SZp53VZtS
+

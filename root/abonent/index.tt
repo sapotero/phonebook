@@ -1,0 +1,34 @@
+[% INCLUDE wrap/header.tt %] 
+<div class="container">
+  <div class="span12">
+    <a href="[% c.uri_for('/') %]">вернуться</a>
+    
+    <h2>Абоненты</h2>
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Имя</th>
+          <th>Телефон</th>
+          <th>Город</th>
+          <th>Страна</th>
+        </tr>
+      </thead>
+      <tbody>
+        [% WHILE (abonent = abonents.next) %]
+        <tr>
+          <td>
+            <a href="[% c.uri_for(abonent.id,'edit') %]"><i class="icon-pencil icon"></i></a>
+            <a href="[% c.uri_for(abonent.id,'delete') %]"><i class="icon-remove icon"></i></a>
+            [% abonent.name %]
+          </td>
+          <td>[% abonent.phone %]</td>
+          <td>[% abonent.town.town %]</td>
+          <td>[% abonent.country.country %]</td>
+        </tr>
+        [% END %]
+      </tbody>
+    </table>
+    <a href="[% c.uri_for('add') %]"><i class="icon-pencil icon"></i> Добавить</a>  
+  </div>
+</div>
+[% INCLUDE wrap/footer.tt %]  

@@ -1,0 +1,11 @@
+[% INCLUDE wrap/header.tt %] 
+<div class="container">
+  <div class="span3 offset4">
+    <a href="[% c.uri_for('list') %]">вернуться</a>
+    <h2> Редактор </h2> 
+  </div>
+  <div class="span3 offset4 well">
+  [% form.render %]
+  </div>
+</div>
+[% INCLUDE wrap/footer.tt %]  

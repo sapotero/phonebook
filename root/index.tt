@@ -1,0 +1,76 @@
+[% INCLUDE wrap/header.tt %]  
+<div class="container">
+  <div class="page-header">
+    <h1>Справочник</h1>
+  </div>
+
+  <div class="row">
+    <!-- countries -->
+    <div class="span6">
+      <h2><a href="[% c.uri_for('country/list') %]">Страны</a></h2>
+      <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Страна</th>
+          <th>Код страны</th>
+        </tr>
+      </thead>
+      <tbody>
+        [% WHILE (c = country.next) %]
+        <tr>
+          <td>[% c.country %]</td>
+          <td>[% c.code %]</td>
+        </tr>
+        [% END %]
+      </tbody>
+    </table>
+    </div>
+
+    <div class="span6">
+      <!--<h2><a href="[% c.uri_for('city/list') %]">Города</a></h2>-->
+      <h2><a href="[% c.uri_for('city/list') %]">Города</a></h2>
+      <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Страна</th>
+          <th>Код города</th>
+        </tr>
+      </thead>
+      <tbody>
+        [% WHILE (c = town.next) %]
+        <tr>
+          <td>[% c.town %]</td>
+          <td>[% c.code %]</td>
+        </tr>
+        [% END %]
+      </tbody>
+    </table>
+    </div>
+
+    <div class="span12">
+      <h2><a href="/abonent/list">Жители</a></h2>
+      <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Имя</th>
+          <th>Город</th>
+          <th>Страна</th>
+          <th>Полный телефонный номер</th>
+        </tr>
+      </thead>
+      <tbody>
+        [% WHILE (c = abonent.next) %]
+        <tr>
+          <td>[% c.name %]</td>
+          <td>[% c.town.town %]</td>
+          <td>[% c.country.country %]</td>
+          <td>8 - [% c.country.code %] ([% c.town.code %]) [% c.phone %]</td>
+        </tr>
+        [% END %]
+      </tbody>
+    </table>
+    </div>
+
+  </div>
+</div>
+[% INCLUDE wrap/footer.tt %]
